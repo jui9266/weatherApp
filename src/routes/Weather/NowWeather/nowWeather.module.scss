@@ -1,0 +1,64 @@
+@use '/src/styles/constants/colors';
+
+.nowWeatherWrap {
+  padding: 16px;
+  margin: 20px 16px;
+  border-radius: 10px;
+
+  .nowWeatherTemp {
+    display: flex;
+    justify-content: space-evenly;
+
+    .weatherIcon {
+      height: 120px;
+    }
+
+    .temp {
+      margin-top: 30px;
+
+      .nowTemp {
+        margin-bottom: 5px;
+        font-size: 40px;
+        font-weight: 600;
+        color: colors.$MAIN;
+      }
+
+      .highLowTemp {
+        font-size: 16px;
+
+        .high {
+          color: colors.$HIGH;
+        }
+
+        .slash {
+          color: colors.$GRAYA;
+        }
+
+        .low {
+          color: colors.$LOW;
+        }
+      }
+    }
+  }
+
+  .subInfo {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+    .subInfoItem {
+      margin: 0 10px;
+
+      .svgIcon {
+        margin-right: 3px;
+        vertical-align: middle;
+        fill: colors.$SUB;
+      }
+
+      .info {
+        color: colors.$SUB_TEXT;
+        vertical-align: middle;
+      }
+    }
+  }
+}

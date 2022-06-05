@@ -1,0 +1,49 @@
+@use '/src/styles/constants/colors';
+
+.sildeItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 60px;
+  padding: 5px;
+  padding: 10px;
+  text-align-last: left;
+  border-bottom: 1px solid #eeeeee;
+  border-radius: 10px;
+
+  .date {
+    color: colors.$GRAYA;
+  }
+
+  .temp {
+    font-size: 18px;
+    color: colors.$GRAYA;
+  }
+
+  .tempMin {
+    font-size: 14px;
+    color: colors.$GRAYA;
+  }
+
+  .weatherWrap {
+    display: inline-block;
+    width: 120px;
+
+    .weatherIcon {
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .weaherText {
+      margin-top: 5px;
+      color: colors.$GRAYA;
+      vertical-align: middle;
+    }
+  }
+
+  h3 {
+    margin: 10px;
+  }
+}

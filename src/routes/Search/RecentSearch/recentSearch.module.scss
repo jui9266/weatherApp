@@ -1,0 +1,94 @@
+@use '/src/styles/constants/colors';
+
+.recentSearchWrap {
+  margin: 40px 20px 0;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: colors.$SUB_TEXT;
+  }
+
+  .recentList {
+    margin-top: 20px;
+  }
+}
+
+.recentSearchItem {
+  position: relative;
+  display: inline-block;
+  width: calc(50% - 10px);
+  height: 120px;
+  padding: 5px;
+  padding: 10px;
+  margin: 5px;
+  text-align-last: left;
+  background: linear-gradient(colors.$SUB, colors.$MAIN);
+  border-radius: 10px;
+
+  .removeButton {
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    color: colors.$WHITE;
+  }
+
+  .date {
+    color: colors.$WHITE;
+  }
+
+  .weatherInfo {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+
+    .weatherIcon {
+      width: 60px;
+      height: 60px;
+      margin: 10px;
+    }
+
+    .temp {
+      margin-left: 10px;
+      font-size: 30px;
+      color: colors.$WHITE;
+    }
+  }
+
+  .weaherText {
+    margin-top: 5px;
+    color: colors.$WHITE;
+  }
+
+  // .searchLocal {
+  //   .local {
+  //     font-size: 20px;
+  //     color: colors.$WHITE;
+  //   }
+
+  //   .weather {
+  //     margin-top: 10px;
+  //     color: colors.$WHITE;
+  //   }
+  // }
+
+  // .weatherInfo {
+  //   display: flex;
+  //   align-items: center;
+
+  //   .temp {
+  //     margin-right: 15px;
+  //     font-size: 35px;
+  //     font-weight: 600;
+  //     color: colors.$WHITE;
+  //   }
+
+  //   .weatherIcon {
+  //     width: 50px;
+  //     height: 50px;
+  //     margin-bottom: 25px;
+  //   }
+  // }
+}

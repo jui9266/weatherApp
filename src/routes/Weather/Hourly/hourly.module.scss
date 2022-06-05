@@ -1,0 +1,39 @@
+@use '/src/styles/constants/colors';
+
+.hourlyWeatherWrap {
+  margin: 30px 16px 0;
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    color: colors.$MAIN;
+  }
+
+  .swiper {
+    margin-top: 20px;
+
+    .hourlyItem {
+      height: 100px;
+      padding: 0 5px;
+      margin-bottom: 10px;
+      text-align: center;
+      user-select: none;
+
+      .time {
+        display: inline-block;
+        padding: 3px 8px;
+        font-size: 12px;
+        color: colors.$GRAYA;
+        border-radius: 10px;
+      }
+
+      .weatherIcon {
+        height: 36px;
+      }
+
+      .temp {
+        font-size: 14px;
+      }
+    }
+  }
+}

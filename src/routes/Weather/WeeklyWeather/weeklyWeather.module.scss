@@ -1,0 +1,16 @@
+@use '/src/styles/constants/colors';
+
+.weeklyWeatherWrap {
+  margin: 20px 16px 60px;
+
+  .title {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: colors.$MAIN;
+  }
+
+  .silderWrap {
+    background-color: #aaaaaa;
+  }
+}
