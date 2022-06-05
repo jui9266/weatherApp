@@ -1,7 +1,57 @@
 @use '/src/styles/constants/colors';
 
 .app {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+
+  .nav {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 480px;
+    height: 60px;
+    padding: 15px 0;
+    background-color: colors.$WHITE;
+    border-top: 2px solid colors.$GRAYA;
+    border-radius: 10px 10px 0 0;
+
+    .navItem {
+      display: inline-block;
+      width: 50%;
+      text-align: center;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        fill: colors.$GRAYA;
+      }
+
+      .navText {
+        display: block;
+        color: colors.$GRAYA;
+      }
+
+      .isActive {
+        .icon {
+          fill: colors.$SUB;
+        }
+
+        .navText {
+          color: colors.$SUB;
+        }
+      }
+    }
+  }
+}
+
+.wrap {
+  width: 100%;
+  max-width: 480px;
+  padding-top: 20px;
+  background-color: #f8f8f8;
+  border: 2px solid #96c7f2;
 }

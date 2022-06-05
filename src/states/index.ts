@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import system from './system'
+import weather from './weather'
 
 export const store = configureStore({
   reducer: {
-    system,
+    weather,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
