@@ -21,7 +21,16 @@
 ```
 
 ## 🎄 프로젝트 트리
-
+```
+src
+ ┣ assets       // json, svg 파일
+ ┣ components   // 공통으로 사용하는 컴포넌트
+ ┣ hooks        // Custom Hooks
+ ┣ routes       // 페이지
+ ┣ util         // JSON 처리 관련
+ ┣ styles       // 전역 style
+ ┣ types        // 필요한 type 정의
+```
 
 ## 📍 Getting Started / 어떻게 시작하나요?
 
@@ -42,7 +51,8 @@ $ yarn start
 
 ## 🖼 실행 이미지
 
-![실행이미지](./readmeImg/deom.gif)
+![실행이미지](./readmeImg/demo.gif)
+
 ## 🔧구현 방법 
 ### 날씨 정보
 > Weather Component
