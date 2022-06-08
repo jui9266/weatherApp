@@ -16,16 +16,15 @@ import Empty from 'components/Empty'
 const Weather = () => {
   // const [nowData, setNowData] = useState(undefined)
 
-  const lacation = useAppSelector<{ lat: string; lon: string; name: string } | undefined>(getNowLocation)
-  const [time, setTime] = useState<string>('')
-  useEffect(() => {
-    setTime(dayjs().format('ddd , DD MMM YYYY '))
-  }, [])
+  const location = useAppSelector<{ lat: string; lon: string; name: string } | undefined>(getNowLocation)
+  const time = dayjs().format('ddd , DD MMM YYYY ')
+
   const { data, isLoading } = useQuery(
-    ['myLocationWeather', lacation],
-    () => lacation && getWeather(lacation?.lon, lacation?.lat),
+    ['myLocationWeather', location],
+    () => location && getWeather(location?.lon, location?.lat),
 
     {
+      enabled: !!location,
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 5,
     }
@@ -36,7 +35,7 @@ const Weather = () => {
       <header>
         <Link className={styles.link} to='searchlocal' type='button'>
           <Location className={styles.svg} />
-          <span className={styles.location}>{lacation?.name}</span>
+          <span className={styles.location}>{location?.name}</span>
           <br />
           <span className={styles.time}>{time}</span>
         </Link>

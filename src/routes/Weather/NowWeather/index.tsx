@@ -8,12 +8,12 @@ interface Props {
   data: IDaily
 }
 
+interface IIconWeather {
+  [key: string]: string
+}
 const NowWeather = ({ data }: Props) => {
   const time = dayjs(data.dt).format('HH')
 
-  interface IIconWeather {
-    [key: string]: string
-  }
   const iconWeather: IIconWeather = {
     Clouds: Number(time) < 19 ? weatherIcon.cloundSun : weatherIcon.cloudNight,
     Rain: Number(time) < 19 ? weatherIcon.rainSun : weatherIcon.rainNight,
@@ -23,6 +23,7 @@ const NowWeather = ({ data }: Props) => {
     Smoke: weatherIcon.smoke,
     Thunderstorm: weatherIcon.storm,
   }
+
   return (
     <div className={styles.nowWeatherWrap}>
       <div className={styles.nowWeatherTemp}>
