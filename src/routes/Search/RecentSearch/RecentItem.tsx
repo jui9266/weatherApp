@@ -29,14 +29,19 @@ const RcentItem = ({ local, handleRemoveRecentData }: Props) => {
 
   const handleRecentItem = () => {
     getCoordinates(local.address_name).then((res) => {
-      dispatch(setCoor({ lat: res.y, lon: res.x, name: res.address_name }))
+      dispatch(
+        setCoor({
+          lat: res.data.documents[0].y,
+          lon: res.data.documents[0].x,
+          name: res.data.documents[0].address_name,
+        })
+      )
       navigate('/')
     })
   }
 
   return (
     <li className={styles.recentSearchItem}>
-      {/* <button type='button' onClick={handleRecentItem}> */}
       <button className={styles.removeButton} onClick={handleRemoveButton} type='button'>
         X
       </button>

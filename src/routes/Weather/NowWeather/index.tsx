@@ -1,6 +1,6 @@
 import styles from './nowWeather.module.scss'
 import { IDaily } from 'types/weather'
-import { Droplet, Wind, Uv } from 'assets/svg'
+import { IconDroplet, IconWind, IconUv } from 'assets/svg'
 import * as weatherIcon from 'assets/img/weatherIcon'
 import dayjs from 'dayjs'
 
@@ -39,15 +39,15 @@ const NowWeather = ({ data }: Props) => {
       </div>
       <ul className={styles.subInfo}>
         <li className={styles.subInfoItem}>
-          <Droplet className={styles.svgIcon} width={20} />
+          <IconDroplet className={styles.svgIcon} width={20} />
           <span className={styles.info}>{data?.humidity} %</span>
         </li>
         <li className={styles.subInfoItem}>
-          <Wind className={styles.svgIcon} width={20} />
+          <IconWind className={styles.svgIcon} width={20} />
           <span className={styles.info}>{data?.wind_speed}m/s</span>
         </li>
         <li className={styles.subInfoItem}>
-          <Uv className={styles.svgIcon} width={20} />
+          <IconUv className={styles.svgIcon} width={20} />
           <span className={styles.info}>{data?.uvi}</span>
         </li>
       </ul>

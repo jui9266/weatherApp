@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
@@ -10,12 +9,10 @@ import Hourly from './Hourly'
 import NowWeather from './NowWeather'
 import styles from './weather.module.scss'
 import WeeklyWeather from './WeeklyWeather'
-import { Location } from 'assets/svg'
+import { IconLocation } from 'assets/svg'
 import Empty from 'components/Empty'
 
 const Weather = () => {
-  // const [nowData, setNowData] = useState(undefined)
-
   const location = useAppSelector<{ lat: string; lon: string; name: string } | undefined>(getNowLocation)
   const time = dayjs().format('ddd , DD MMM YYYY ')
 
@@ -34,7 +31,7 @@ const Weather = () => {
     <div className={styles.wrap}>
       <header>
         <Link className={styles.link} to='searchlocal' type='button'>
-          <Location className={styles.svg} />
+          <IconLocation className={styles.svg} />
           <span className={styles.location}>{location?.name}</span>
           <br />
           <span className={styles.time}>{time}</span>
