@@ -50,14 +50,32 @@
     left: 50%;
     z-index: 9;
     width: 360px;
-    padding: 15px;
     background-color: #fafafa;
     border: 2px solid #eeeeee;
     border-radius: 0 0 10px 10px;
     transform: translate(-50%, 0%);
 
-    .addressItem {
-      padding: 10px 0;
+    li {
+      position: relative;
+      padding: 15px;
+
+      &:hover {
+        background-color: #dddddd;
+      }
+    }
+
+    .active {
+      background-color: #dddddd;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: -2px;
+        width: 3px;
+        height: 100%;
+        content: '';
+        background-color: colors.$SUB;
+      }
     }
 
     .addressText {
