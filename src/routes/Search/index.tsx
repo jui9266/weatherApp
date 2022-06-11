@@ -1,33 +1,43 @@
-import { IconSearch } from 'assets/svg'
+import { ChangeEvent, FormEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from 'hooks'
-import { ChangeEvent, FormEvent, useState } from 'react'
 
+import { IconSearch } from 'assets/svg'
+import { useAppDispatch, useAppSelector } from 'hooks'
 import { getCoordinates } from 'services/coordinates'
-import RecentSearch from './RecentSearch'
-import styles from './search.module.scss'
-import { setCoor } from 'states/weather'
+import { getSearchActiveIndex, setCoor, setSearchActiveIndex } from 'states/weather'
 import { ICoordinates } from 'types/recentSearch'
-import AddressList from './AddressList'
 import { storage } from 'utils/storage'
+import styles from './search.module.scss'
+
+import RecentSearch from './RecentSearch'
+import AddressList from './AddressList'
 
 const Search = () => {
   const [searchVal, setSearchVal] = useState<string>('')
   const [addressList, setAddressList] = useState<ICoordinates[] | []>([])
+  const activeIndex = useAppSelector(getSearchActiveIndex)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const handleSearchVal = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchVal(e.currentTarget.value)
-    if (e.currentTarget.value.length >= 2) {
-      getCoordinates(e.currentTarget.value)
+  useEffect(() => {
+    if (searchVal.length < 2) {
+      return setAddressList([])
+    }
+    const debounce = setTimeout(() => {
+      getCoordinates(searchVal)
         .then((res) => {
           setAddressList(res.data.documents)
         })
         .catch(() => {
           setAddressList([])
         })
-    }
+    }, 500)
+    return () => clearTimeout(debounce)
+  }, [searchVal])
+
+  const handleSearchVal = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchActiveIndex(0))
+    setSearchVal(e.currentTarget.value)
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -35,14 +45,24 @@ const Search = () => {
     getCoordinates(searchVal).then((res) => {
       dispatch(
         setCoor({
-          lat: res.data.documents[0].y,
-          lon: res.data.documents[0].x,
-          name: res.data.documents[0].address_name,
+          lat: res.data.documents[activeIndex].y,
+          lon: res.data.documents[activeIndex].x,
+          name: res.data.documents[activeIndex].address_name,
         })
       )
-      storage(res.data.documents[0])
+      storage(res.data.documents[activeIndex])
       navigate('/')
     })
+  }
+
+  const handleKeyMove = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (!addressList || event.nativeEvent.isComposing) return
+
+    if (event.key === 'ArrowUp')
+      dispatch(activeIndex > 0 ? setSearchActiveIndex(activeIndex - 1) : setSearchActiveIndex(addressList.length - 1))
+
+    if (event.key === 'ArrowDown')
+      dispatch(activeIndex === addressList.length - 1 ? setSearchActiveIndex(0) : setSearchActiveIndex(activeIndex + 1))
   }
 
   return (
@@ -50,9 +70,10 @@ const Search = () => {
       <div className={styles.inputWrap}>
         <form className={styles.inputForm} onSubmit={handleSubmit}>
           <input
-            placeholder='검색하고 싶은 지역을 입력하세요'
+            placeholder='검색하고 싶은 국내 지역을 입력하세요'
             className={styles.input}
             value={searchVal}
+            onKeyDown={handleKeyMove}
             onChange={handleSearchVal}
           />
           <button className={styles.submitButton} type='submit'>
@@ -61,8 +82,8 @@ const Search = () => {
         </form>
         {addressList.length > 0 && (
           <ul className={styles.addressList}>
-            {addressList.map((el) => (
-              <AddressList key={el.address_name} data={el} />
+            {addressList.map((el, index) => (
+              <AddressList key={el.address_name} data={el} listIndex={index} />
             ))}
           </ul>
         )}

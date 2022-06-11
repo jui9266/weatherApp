@@ -13,7 +13,7 @@ import { IconLocation } from 'assets/svg'
 import Empty from 'components/Empty'
 
 const Weather = () => {
-  const location = useAppSelector<{ lat: string; lon: string; name: string } | undefined>(getNowLocation)
+  const location = useAppSelector(getNowLocation)
   const time = dayjs().format('ddd , DD MMM YYYY ')
 
   const { data, isLoading } = useQuery(
@@ -40,7 +40,7 @@ const Weather = () => {
       {isLoading && <Empty text='날씨 정보를 가져오고있어요!' />}
       {data && (
         <>
-          <NowWeather data={data.daily[0]} />
+          <NowWeather nowData={data.current} highLowTemp={data.daily[0].temp} />
           <Hourly data={data.hourly} />
           <WeeklyWeather data={data.daily} />
         </>

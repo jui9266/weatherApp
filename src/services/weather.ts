@@ -24,7 +24,7 @@ export const getWeather = (lon: string, lat: string) => {
         lat,
         lon,
         ...getWeatherOption,
-        exclude: 'current,minutely,alerts',
+        exclude: 'minutely,alerts',
       },
       timeout: 10000,
     })

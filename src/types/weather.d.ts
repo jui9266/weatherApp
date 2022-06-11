@@ -37,7 +37,7 @@ interface IFeelslike {
   morn: number
 }
 
-interface ITemp {
+export interface ITemp {
   day: number
   min: number
   max: number

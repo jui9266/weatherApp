@@ -8,6 +8,7 @@ interface WeaherSatae {
     lat: string
     lon: string
   }
+  searchActiveIndex: number
 }
 
 const INITIAL_STATE: WeaherSatae = {
@@ -16,6 +17,7 @@ const INITIAL_STATE: WeaherSatae = {
     lat: '37.5173319258532',
     lon: '127.047377408384',
   },
+  searchActiveIndex: 0,
 }
 const weatherSlice = createSlice({
   name: 'weather',
@@ -24,12 +26,16 @@ const weatherSlice = createSlice({
     setCoor: (state: WeaherSatae, action: PayloadAction<{ lat: string; lon: string; name: string }>) => {
       state.location = action.payload
     },
+    setSearchActiveIndex: (state: WeaherSatae, action: PayloadAction<number>) => {
+      state.searchActiveIndex = action.payload
+    },
   },
 })
-export const { setCoor } = weatherSlice.actions
+export const { setCoor, setSearchActiveIndex } = weatherSlice.actions
 
 export default weatherSlice.reducer
 
 // Selector =====================
 export const getNowLocation = (state: RootState): { lat: string; lon: string; name: string } | undefined =>
   state.weather.location
+export const getSearchActiveIndex = (state: RootState): number => state.weather.searchActiveIndex
