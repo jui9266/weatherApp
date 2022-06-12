@@ -15,11 +15,13 @@ import AddressList from './AddressList'
 const Search = () => {
   const [searchVal, setSearchVal] = useState<string>('')
   const [addressList, setAddressList] = useState<ICoordinates[] | []>([])
+  const [emptySearchItem, setEmptySearchItem] = useState(false)
   const activeIndex = useAppSelector(getSearchActiveIndex)
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    setEmptySearchItem(false)
     if (searchVal.length < 2) {
       return setAddressList([])
     }
@@ -43,6 +45,10 @@ const Search = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     getCoordinates(searchVal).then((res) => {
+      if (res.data.documents.length === 0) {
+        setEmptySearchItem(true)
+        return
+      }
       dispatch(
         setCoor({
           lat: res.data.documents[activeIndex].y,
@@ -80,6 +86,7 @@ const Search = () => {
             <IconSearch className={styles.searchIcon} />
           </button>
         </form>
+        {emptySearchItem && <p className={styles.emptySearchItem}>검색 결과가 없습니다.</p>}
         {addressList.length > 0 && (
           <ul className={styles.addressList}>
             {addressList.map((el, index) => (

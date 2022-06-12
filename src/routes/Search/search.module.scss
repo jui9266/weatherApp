@@ -44,6 +44,14 @@
     }
   }
 
+  .emptySearchItem {
+    position: absolute;
+    margin-top: 10px;
+    font-size: 14px;
+    color: colors.$RED;
+    text-align: left;
+  }
+
   .addressList {
     position: absolute;
     top: 55px;
