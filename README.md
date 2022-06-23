@@ -36,7 +36,7 @@ src
 
 1. Repository 클론
 ```sh
-$ git clone https://github.com/Team8-Rocket/kb-healthcare.git
+$ git clone https://github.com/jui9266/weatherApp.git
 ```
 
 2. Dependencies 설치
